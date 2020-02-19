@@ -1,8 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SidenavResponsiveExample } from './sidenav/sidenav-responsive-example';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
@@ -11,16 +9,17 @@ import {MatListModule} from '@angular/material/list';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
+import { DespesaComponent } from './despesa/despesa.component';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    SidenavResponsiveExample
+  declarations: [    
+    SidenavResponsiveExample, DespesaComponent
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
+    BrowserModule,    
     BrowserAnimationsModule,
+    ChartsModule,
 
   MatAutocompleteModule,
   MatButtonModule,
@@ -62,9 +61,10 @@ import {MatIconModule} from '@angular/material/icon';
     MatButtonModule,
     MatToolbarModule,
     MatIconModule,
+    ChartsModule
   ],
   providers: [],
   // bootstrap: [AppComponent]
-  bootstrap: [SidenavResponsiveExample, AppComponent]
+  bootstrap: [SidenavResponsiveExample]
 })
 export class AppModule { }

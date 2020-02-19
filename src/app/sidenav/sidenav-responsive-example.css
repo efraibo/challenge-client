@@ -1,0 +1,11 @@
+mat-toolbar.mat-toolbar.mat-primary.mat-toolbar-single-row {
+    background: #054F77;
+}
+
+mat-drawer.mat-drawer.ng-tns-c31-0.ng-trigger.ng-trigger-transform.mat-drawer-side.ng-star-inserted.mat-drawer-opened {
+    background: #054F77 !important; 
+}
+
+.drawer-formatter {
+    color: #ffffff
+}
