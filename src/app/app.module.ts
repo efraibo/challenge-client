@@ -3,16 +3,68 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SidenavResponsiveExample } from './sidenav/sidenav-responsive-example';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
+import {MatButtonModule} from '@angular/material/button';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SidenavResponsiveExample
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+
+  MatAutocompleteModule,
+  MatButtonModule,
+  // MatButtonToggleModule,
+  // MatCardModule,
+  // MatCheckboxModule,
+  // MatChipsModule,
+  // MatDatepickerModule,
+  // MatDialogModule,
+  // MatDividerModule,
+  // MatExpansionModule,
+  // MatGridListModule,
+  MatIconModule,
+  // MatInputModule,
+  MatListModule,
+  // MatMenuModule,
+  // MatNativeDateModule,
+  // MatPaginatorModule,
+  // MatProgressBarModule,
+  // MatProgressSpinnerModule,
+  // MatRadioModule,
+  // MatRippleModule,
+  // MatSelectModule,
+  MatSidenavModule,
+  // MatSliderModule,
+  // MatSlideToggleModule,
+  // MatSnackBarModule,
+  // MatSortModule,
+  // MatStepperModule,
+  // MatTableModule,
+  // MatTabsModule,
+  MatToolbarModule,
+  // MatTooltipModule,
+    
+  ],
+  exports: [
+    MatSidenavModule,
+    MatListModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatIconModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  // bootstrap: [AppComponent]
+  bootstrap: [SidenavResponsiveExample, AppComponent]
 })
 export class AppModule { }
