@@ -1,0 +1,8 @@
+applications:
+- name: challenge-client
+  memory: 512M
+  disk_quota: 1024M
+  instances: 1
+  buldpack: staticfile_buildpack
+  domain: cfapps.io
+  path: ./dist/challenge-client

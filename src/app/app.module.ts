@@ -11,6 +11,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import { DespesaComponent } from './despesa/despesa.component';
 import { ChartsModule } from 'ng2-charts';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [    
@@ -20,6 +21,7 @@ import { ChartsModule } from 'ng2-charts';
     BrowserModule,    
     BrowserAnimationsModule,
     ChartsModule,
+    HttpClientModule,
 
   MatAutocompleteModule,
   MatButtonModule,
