@@ -3,7 +3,7 @@ import { ChartType, ChartOptions, ChartDataSets } from 'chart.js';
 import { Label } from 'ng2-charts';
 //import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 import { DespesaService } from '../services/despesa.service';
-import { Despesa } from './despesa';
+import { DespesaMes, DespesaFonte } from './despesa';
 
 
 
@@ -14,15 +14,16 @@ import { Despesa } from './despesa';
 })
 export class DespesaComponent implements OnInit {
 
-  despesas: Despesa[];
+  despesasMes: DespesaMes[];
+  despesasFonte: DespesaFonte[];
   meses: number[] = [];
 
-  constructor(private service: DespesaService) {
-    this.listarDespesas();
+  constructor(private service: DespesaService) {    
   }
 
   ngOnInit() {
-
+    this.despesasPorMes();
+    this.despesasPorFonte();
   }
 
   public pieChartOptions: ChartOptions = {
@@ -39,8 +40,8 @@ export class DespesaComponent implements OnInit {
       },
     }
   };
-  public pieChartLabels: Label[] = [['Download', 'Sales'], ['In', 'Store', 'Sales'], 'Mail Sales'];
-  public pieChartData: number[] = [300, 500, 100];
+  public pieChartLabels: Label[] = [];
+  public pieChartData: number[] = [];
   public pieChartType: ChartType = 'pie';
   public pieChartLegend = true;
   public pieChartPlugins = [];
@@ -55,7 +56,7 @@ export class DespesaComponent implements OnInit {
     // We use these empty structures as placeholders for dynamic theming.
     scales: { xAxes: [{}], yAxes: [{}] },
   };
-  public barChartLabels: Label[] = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
+  public barChartLabels: Label[] = [];
   public barChartType: ChartType = 'bar';
   public barChartLegend = true;
 
@@ -77,30 +78,6 @@ export class DespesaComponent implements OnInit {
     //console.log(event, active);
   }
 
-  changeLabels() {
-    const words = ['hen', 'variable', 'embryo', 'instal', 'pleasant', 'physical', 'bomber', 'army', 'add', 'film',
-      'conductor', 'comfortable', 'flourish', 'establish', 'circumstance', 'chimney', 'crack', 'hall', 'energy',
-      'treat', 'window', 'shareholder', 'division', 'disk', 'temptation', 'chord', 'left', 'hospital', 'beef',
-      'patrol', 'satisfied', 'academy', 'acceptance', 'ivory', 'aquarium', 'building', 'store', 'replace', 'language',
-      'redeem', 'honest', 'intention', 'silk', 'opera', 'sleep', 'innocent', 'ignore', 'suite', 'applaud', 'funny'];
-    const randomWord = () => words[Math.trunc(Math.random() * words.length)];
-    this.pieChartLabels = Array.apply(null, { length: 3 }).map(_ => randomWord());
-  }
-
-  addSlice() {
-    this.pieChartLabels.push(['Line 1', 'Line 2', 'Line 3']);
-    this.pieChartData.push(400);
-    this.pieChartColors[0].backgroundColor.push('rgba(196,79,244,0.3)');
-  }
-
-
-
-  removeSlice() {
-    this.pieChartLabels.pop();
-    this.pieChartData.pop();
-    this.pieChartColors[0].backgroundColor.pop();
-  }
-
   changeLegendPosition() {
     this.pieChartOptions.legend.position = this.pieChartOptions.legend.position === 'left' ? 'top' : 'left';
   }
@@ -109,14 +86,14 @@ export class DespesaComponent implements OnInit {
     this.barChartType = this.barChartType === 'bar' ? 'line' : 'bar';
   }
 
-  listarDespesas() {
+  despesasPorMes() {
     this.service.getListaDespesaPorMes().subscribe(
       (res) => {
-        this.despesas = res;        
+        this.despesasMes = res;        
         this.barChartData = [
-          { data: Object.assign(this.despesas.map(x => x.total)), label: 'valor' },
+          { data: Object.assign(this.despesasMes.map(x => x.total)), label: 'valor' },
         ];        
-        this.barChartLabels = this.addMes(Object.assign(this.despesas.map(x => x.mes_movimento)));
+        this.barChartLabels = this.addMes(Object.assign(this.despesasMes.map(x => x.mes_movimento)));
       },
       (err) => {
         alert('There is a problem!' + JSON.stringify(err));
@@ -172,6 +149,20 @@ export class DespesaComponent implements OnInit {
     });
 
     return mesesFormatados;
+  }
+
+  despesasPorFonte() {
+    this.service.getListaDespesaPorFontes().subscribe(
+      (res) => {
+        this.despesasFonte = res;
+        this.pieChartLabels = Object.assign(this.despesasFonte.map(x => x.fonte_recurso_nome));
+        this.pieChartData = Object.assign(this.despesasFonte.map(x => x.total));
+        console.log("this.despesasFonte :: ", this.despesasFonte);
+      },
+      (err) => {
+        alert('There is a problem!' + JSON.stringify(err));
+      }
+    );
   }
 
 }
