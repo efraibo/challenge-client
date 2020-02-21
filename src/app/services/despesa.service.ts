@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { DespesaMes, DespesaFonte } from '../despesa/despesa';
+import { DespesaMes, DespesaFonte, DespesaCategoria } from '../despesa/despesa';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DespesaService {
   
-
   private apiUrl = 'https://challenge.cfapps.io/api/v1/despesas/';
 
   // private apiUrl = '/api/v1/despesas/';
@@ -26,5 +25,11 @@ export class DespesaService {
     const url = this.apiUrl + 'fonte';
     console.log("URL :: ", url);
     return this.http.get<DespesaFonte[]>(url);
+  }
+
+  getListaDespesaPorCategoria(): Observable<DespesaCategoria[]> {
+    const url = this.apiUrl + 'categoria';
+    console.log("URL :: ", url);
+    return this.http.get<DespesaCategoria[]>(url);
   }
 }

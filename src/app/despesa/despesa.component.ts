@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartType, ChartOptions, ChartDataSets } from 'chart.js';
 import { Label } from 'ng2-charts';
-//import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 import { DespesaService } from '../services/despesa.service';
-import { DespesaMes, DespesaFonte } from './despesa';
+import { DespesaMes, DespesaFonte, DespesaCategoria } from './despesa';
 
 
 
@@ -16,6 +15,7 @@ export class DespesaComponent implements OnInit {
 
   despesasMes: DespesaMes[];
   despesasFonte: DespesaFonte[];
+  despesasCategoria: DespesaCategoria[];
   meses: number[] = [];
 
   constructor(private service: DespesaService) {    
@@ -24,6 +24,7 @@ export class DespesaComponent implements OnInit {
   ngOnInit() {
     this.despesasPorMes();
     this.despesasPorFonte();
+    this.despesasPorCategoria();
   }
 
   public pieChartOptions: ChartOptions = {
@@ -40,12 +41,37 @@ export class DespesaComponent implements OnInit {
       },
     }
   };
+
+  public categoriaChartOptions: ChartOptions = {
+    responsive: true,
+    legend: {
+      position: 'top',
+    },
+    plugins: {
+      datalabels: {
+        formatter: (value, ctx) => {
+          const label = ctx.chart.data.labels[ctx.dataIndex];
+          return label;
+        },
+      },
+    }
+  };
   public pieChartLabels: Label[] = [];
+  public categoriaChartLabels: Label[] = [];
   public pieChartData: number[] = [];
+  public categoriaChartData: number[] = [];
   public pieChartType: ChartType = 'pie';
+  public categoriaChartType: ChartType = 'pie';
   public pieChartLegend = true;
   public pieChartPlugins = [];
+  public categoriaChartPlugins = [];
   public pieChartColors = [
+    {
+      backgroundColor: ['rgba(255,0,0,0.3)', 'rgba(0,255,0,0.3)', 'rgba(0,0,255,0.3)'],
+    },
+  ];
+
+  public categoriaChartColors = [
     {
       backgroundColor: ['rgba(255,0,0,0.3)', 'rgba(0,255,0,0.3)', 'rgba(0,0,255,0.3)'],
     },
@@ -156,8 +182,22 @@ export class DespesaComponent implements OnInit {
       (res) => {
         this.despesasFonte = res;
         this.pieChartLabels = Object.assign(this.despesasFonte.map(x => x.fonte_recurso_nome));
-        this.pieChartData = Object.assign(this.despesasFonte.map(x => x.total));
+        this.pieChartData = Object.assign(this.despesasFonte.map(x => x.total));          
         console.log("this.despesasFonte :: ", this.despesasFonte);
+      },
+      (err) => {
+        alert('There is a problem!' + JSON.stringify(err));
+      }
+    );
+  }
+
+  despesasPorCategoria() {
+    this.service.getListaDespesaPorCategoria().subscribe(
+      (res) => {
+        this.despesasCategoria = res;
+        this.categoriaChartLabels = Object.assign(this.despesasCategoria.map(x => x.categoria_economica_nome));
+        this.categoriaChartData = Object.assign(this.despesasCategoria.map(x => x.total));          
+        console.log("this.despesasCategoria :: ", this.despesasCategoria);
       },
       (err) => {
         alert('There is a problem!' + JSON.stringify(err));

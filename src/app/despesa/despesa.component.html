@@ -20,7 +20,10 @@
       <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
         [options]="pieChartOptions" [plugins]="pieChartPlugins" [colors]="pieChartColors" [legend]="pieChartLegend">
       </canvas>
-    </div>
+      <canvas baseChart [data]="categoriaChartData" [labels]="categoriaChartLabels" [chartType]="categoriaChartType"
+        [options]="categoriaChartOptions" [plugins]="categoriaChartPlugins" [colors]="categoriaChartColors">
+      </canvas>  
+    </div>        
   </div>
 </div>
-<button mat-button mat-raised-button color="primary" (click)="changeLegendPosition()">Trocar posição</button>
+<!-- <button mat-button mat-raised-button color="primary" (click)="changeLegendPosition()">Trocar posição</button> -->
