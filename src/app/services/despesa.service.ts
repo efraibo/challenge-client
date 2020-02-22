@@ -10,7 +10,7 @@ export class DespesaService {
   
   private apiUrl = 'https://challenge.cfapps.io/api/v1/despesas/';
 
-  // private apiUrl = '/api/v1/despesas/';
+  // private apiUrl = 'http://localhost:8080/api/v1/despesas/';
 
   constructor(private http: HttpClient) {
   }

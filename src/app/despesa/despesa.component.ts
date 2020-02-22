@@ -180,7 +180,7 @@ export class DespesaComponent implements OnInit {
   despesasPorFonte() {
     this.service.getListaDespesaPorFontes().subscribe(
       (res) => {
-        this.despesasFonte = res;
+        this.despesasFonte = res.slice(1, 4);
         this.pieChartLabels = Object.assign(this.despesasFonte.map(x => x.fonte_recurso_nome));
         this.pieChartData = Object.assign(this.despesasFonte.map(x => x.total));          
         console.log("this.despesasFonte :: ", this.despesasFonte);

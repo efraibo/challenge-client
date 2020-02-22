@@ -1,11 +1,11 @@
-<div class="container" style="width: 1224px;">
+<div style="width: 100% !important; text-align: center !important;">
   <div>
     <div>
       <div>
-        <div style="display: block">
+        <div>
           <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
             [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)"
-            (chartClick)="chartClicked($event)"></canvas>
+            (chartClick)="chartClicked($event)" style="width: 60% !important; height: auto !important; display: initial !important;"></canvas>
         </div>
         <button mat-button mat-raised-button color="primary" (click)="randomize()">Alterar visualização</button>
       </div>
@@ -16,12 +16,14 @@
 <br>
 <div>
   <div>
-    <div class="chart">
+    <div class="chart" style="text-align: center !important; ">
       <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
-        [options]="pieChartOptions" [plugins]="pieChartPlugins" [colors]="pieChartColors" [legend]="pieChartLegend">
+        [options]="pieChartOptions" [plugins]="pieChartPlugins" [colors]="pieChartColors" [legend]="pieChartLegend"
+        style="width: 40% !important; height: auto !important; display: initial ;">
       </canvas>
       <canvas baseChart [data]="categoriaChartData" [labels]="categoriaChartLabels" [chartType]="categoriaChartType"
-        [options]="categoriaChartOptions" [plugins]="categoriaChartPlugins" [colors]="categoriaChartColors">
+        [options]="categoriaChartOptions" [plugins]="categoriaChartPlugins" [colors]="categoriaChartColors"
+        style="width: 40% !important; height: auto !important; display: initial !important;">
       </canvas>  
     </div>        
   </div>
