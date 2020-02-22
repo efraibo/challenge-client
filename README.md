@@ -13,7 +13,7 @@
 ## Foi utilizado o heroku para subir o módulo web deixando claro que é uma aplicação single page application
 ## Para acessar a aplicação remota acesse o seguinte link: https://challenge-client-app.herokuapp.com/
 
-## ------------------------------------------------------------------------------------------------------------------ ##
+## ----------------------------------------------------------------------------- ##
 
 # ChallengeClient
 
