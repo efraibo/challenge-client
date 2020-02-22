@@ -25,3 +25,22 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+
+
+# Informações úteis para sibir a aplicação front end
+
+## Após fazer o download da aplicação execute o comando "nmp install" na raiz do projeto para baixar todas as dependências;
+## Em seguida execute o comando "ng serve --open" esse comando executará a aplicação local abrirá em seu browser padrão;
+
+# Ambiente Local
+
+## Está sendo feito a chamada para a api real, fazendo com que a aplicação front end sempre possua os dados reais;
+
+
+# Ambiente Remoto
+
+## Foi utilizado o heroku para subir o módulo web deixando claro que é uma aplicação single page application
+## Para acessar a aplicação remota acesse o seguinte link: https://challenge-client-app.herokuapp.com/
+
+
